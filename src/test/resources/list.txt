@@ -1,0 +1,39 @@
+name: 8_WVGA854_armeabi
+	abi: armeabi
+	created_at: 2012-09-06 03:21:38 UTC
+	device_display_density: 240
+	device_display_height: 854
+	device_display_width: 480
+	extras: 
+	heap_size: 24
+	id: 42
+	name: 8_WVGA854_armeabi
+	ram_size: 0
+	sdk_version: 8
+	skin: WVGA854
+	skin_landscape_height: 761
+	skin_landscape_width: 907
+	skin_portrait_height: 908
+	skin_portrait_width: 950
+	updated_at: 2012-09-06 03:21:38 UTC
+	vendor: 
+
+name: 8_mm540x960_armeabi
+	abi: armeabi
+	created_at: 2012-09-06 03:21:38 UTC
+	device_display_density: 240
+	device_display_height: 960
+	device_display_width: 540
+	extras: 
+	heap_size: 24
+	id: 38
+	name: 8_mm540x960_armeabi
+	ram_size: 0
+	sdk_version: 8
+	skin: mm540x960
+	skin_landscape_height: 821
+	skin_landscape_width: 1013
+	skin_portrait_height: 1014
+	skin_portrait_width: 1010
+	updated_at: 2012-09-06 03:21:38 UTC
+	vendor: 

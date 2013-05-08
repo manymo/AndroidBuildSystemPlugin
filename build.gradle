@@ -1,0 +1,38 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+
+    // repository with the output of the Android Tools project
+    maven { url "${System.getenv("ANDROID_ROOT")}/out/host/gradle/repo" }
+}
+
+configurations {
+    gradleApi
+    compile.extendsFrom gradleApi
+    gradleApi.extendsFrom groovy
+}
+
+dependencies {
+    gradleApi gradleApi()
+    groovy localGroovy()
+
+    compile 'com.android.tools.build:builder-test-api:0.4-SNAPSHOT'
+
+    testCompile 'junit:junit:3.8.1'
+}
+
+group = 'com.manymo'
+archivesBaseName = 'manymo-gradle'
+version = '1.0-SNAPSHOT'
+
+task publishLocal(type: Upload) {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            repository(url: uri('repo'))
+        }
+    }
+}
