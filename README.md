@@ -5,28 +5,28 @@ installing the authentication token.
 
 A typical project build.gradle will look like this:
 
-buildscript {
-    repositories {
-        mavenCentral()
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:0.4'
+            classpath 'com.manymo:manymo-gradle:1.0'
+        }
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.4'
-        classpath 'com.manymo:manymo-gradle:1.0'
+    
+    apply plugin: 'android'
+    apply plugin: 'manymo'
+    
+    android {
+        //...
     }
-}
-
-apply plugin: 'android'
-apply plugin: 'manymo'
-
-android {
-   //...
-}
-
-manymo {
-    // list of device to test on. Not providing devices will test on all
-    // available devices available on manymo.com that are compatible with
-    // the app (based on minSdkVersion)
-    devices "17_WXGA800-7in_x86", "17_WXGA720_x86"
-
-    timeOut 30
-}
+    
+    manymo {
+        // list of device to test on. Not providing devices will test on all
+        // available devices available on manymo.com that are compatible with
+        // the app (based on minSdkVersion)
+        devices "17_WXGA800-7in_x86", "17_WXGA720_x86"
+    
+        timeOut 30
+    }

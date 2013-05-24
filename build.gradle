@@ -26,6 +26,31 @@ group = 'com.manymo'
 archivesBaseName = 'gradle'
 version = '1.0'
 
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn:classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    exclude               "**/internal/**"
+    options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+
+    title                 "Manymo"
+}
+
+task javadocJar(type: Jar, dependsOn:javadoc) {
+    classifier         'javadoc'
+    from               javadoc.destinationDir
+}
+ 
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
 task publishLocal(type: Upload) {
     configuration = configurations.archives
     repositories {
