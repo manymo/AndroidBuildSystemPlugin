@@ -2,14 +2,11 @@ buildscript {
     repositories {
         mavenCentral()
 
-        // repository with the output of the Android Tools project
-        maven { url "${System.getenv("ANDROID_ROOT")}/out/host/gradle/repo" }
-
         // repository with the output of the manymo plugin build
         maven { url '../../repo' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.4-SNAPSHOT'
+        classpath 'com.android.tools.build:gradle:0.4'
         classpath 'com.manymo:manymo-gradle:1.0-SNAPSHOT'
     }
 }
@@ -26,5 +23,5 @@ android {
 
 manymo {
     devices "17_WXGA800-7in_x86", "17_WXGA720_x86"
-      timeOut 30
+    timeOut 30
 }

@@ -1,8 +1,32 @@
 Gradle plugin to deploys tests to Manymo cloud emulators from the Android SDK build system.
 
-To build, you'll require the Android Gradle plugin 0.4-SNAPSHOT.
+To use, this requires instealling the manymo script in the path, as well as
+installing the authentication token.
 
-Until release, this requires building it manually.
-See instructions at http://tools.android.com/tech-docs/new-build-system
+A typical project build.gradle will look like this:
 
-After building the Android Gradle plugin, export ANDROID_ROOT as the path to the root of the Android Source tree.
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.4'
+        classpath 'com.manymo:manymo-gradle:1.0'
+    }
+}
+
+apply plugin: 'android'
+apply plugin: 'manymo'
+
+android {
+   //...
+}
+
+manymo {
+    // list of device to test on. Not providing devices will test on all
+    // available devices available on manymo.com that are compatible with
+    // the app (based on minSdkVersion)
+    devices "17_WXGA800-7in_x86", "17_WXGA720_x86"
+
+    timeOut 30
+}
