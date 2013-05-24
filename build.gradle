@@ -1,12 +1,10 @@
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 repositories {
     mavenCentral()
-
-    // repository with the output of the Android Tools project
-    maven { url "${System.getenv("ANDROID_ROOT")}/out/host/gradle/repo" }
 }
 
 configurations {
@@ -19,14 +17,14 @@ dependencies {
     gradleApi gradleApi()
     groovy localGroovy()
 
-    compile 'com.android.tools.build:builder-test-api:0.4-SNAPSHOT'
+    compile 'com.android.tools.build:builder-test-api:0.4'
 
     testCompile 'junit:junit:3.8.1'
 }
 
 group = 'com.manymo'
-archivesBaseName = 'manymo-gradle'
-version = '1.0-SNAPSHOT'
+archivesBaseName = 'gradle'
+version = '1.0'
 
 task publishLocal(type: Upload) {
     configuration = configurations.archives
@@ -35,4 +33,55 @@ task publishLocal(type: Upload) {
             repository(url: uri('repo'))
         }
     }
+}
+
+project.ext.sonatypeUsername = hasProperty('sonatypeUsername') ? sonatypeUsername : ""
+project.ext.sonatypePassword = hasProperty('sonatypePassword') ? sonatypePassword : ""
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment ->
+                if (project.ext.sonatypeUsername.length() == 0 || project.ext.sonatypePassword.length() == 0) {
+                    throw new StopExecutionException("uploadArchives cannot be called without sonatype username and password")
+                }
+
+                signing.signPom(deployment)
+            }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: project.ext.sonatypeUsername, password: project.ext.sonatypePassword)
+            }
+
+            pom.project {
+                name 'Manymo Plugin for Android'
+                description 'Adds support for deploying tests to manymo.com from the Android build system.'
+                url 'http://www.manymo.com'
+                inceptionYear '2013'
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                scm {
+                    url "https://github.com/manymo/AndroidBuildSystemPlugin.git"
+                    connection "git://github.com/manymo/AndroidBuildSystemPlugin.git"
+                }
+                developers {
+                    developer {
+                        name 'Manymo'
+                    }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
 }
