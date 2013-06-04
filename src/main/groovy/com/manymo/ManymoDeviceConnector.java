@@ -26,6 +26,7 @@ import com.android.ddmlib.IShellOutputReceiver;
 import com.android.ddmlib.InstallException;
 import com.android.ddmlib.ShellCommandUnresponsiveException;
 import com.android.ddmlib.TimeoutException;
+import com.android.ddmlib.DdmPreferences;
 import com.android.utils.ILogger;
 import com.google.common.base.Joiner;
 
@@ -70,6 +71,8 @@ public class ManymoDeviceConnector extends DeviceConnector {
     public void connect(int timeOut, ILogger logger) throws TimeoutException {
         try {
             List<String> stdout;
+
+            DdmPreferences.setTimeOut(30000);
 
             stdout = commandHelper.runCommand(
                     String.format("Connecting to '%s'", deviceId),
