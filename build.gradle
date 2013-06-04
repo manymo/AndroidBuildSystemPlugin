@@ -15,7 +15,9 @@ configurations {
 
 dependencies {
     gradleApi gradleApi()
-    groovy localGroovy()
+
+    //we will use the Groovy version that ships with Gradle
+    compile localGroovy()
 
     compile 'com.android.tools.build:builder-test-api:0.4'
 
