@@ -11,7 +11,7 @@ A typical project build.gradle will look like this:
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:0.4'
-            classpath 'com.manymo:manymo-gradle:1.0'
+            classpath 'com.manymo:gradle:1.0'
         }
     }
     
