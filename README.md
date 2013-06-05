@@ -1,6 +1,6 @@
 Gradle plugin to deploys tests to Manymo cloud emulators from the Android SDK build system.
 
-To use, this requires instealling the [manymo command line tool](https://www.manymo.com/pages/documentation/manymo-command-line-tool), as well as
+To use, this requires installing the [manymo command line tool](https://www.manymo.com/pages/documentation/manymo-command-line-tool), as well as
 installing the authentication token.
 
 A typical project build.gradle will look like this:
