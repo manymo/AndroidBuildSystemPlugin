@@ -19,14 +19,14 @@ dependencies {
     //we will use the Groovy version that ships with Gradle
     compile localGroovy()
 
-    compile 'com.android.tools.build:builder-test-api:0.4'
+    compile 'com.android.tools.build:builder-test-api:0.5.4'
 
     testCompile 'junit:junit:3.8.1'
 }
 
 group = 'com.manymo'
 archivesBaseName = 'gradle'
-version = '1.0'
+version = '1.1'
 
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn:classes) {

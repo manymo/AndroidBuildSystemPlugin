@@ -29,6 +29,7 @@ import com.android.ddmlib.TimeoutException;
 import com.android.ddmlib.DdmPreferences;
 import com.android.utils.ILogger;
 import com.google.common.base.Joiner;
+import java.util.concurrent.TimeUnit;
 
 import java.io.File;
 import java.io.IOException;
@@ -177,12 +178,12 @@ public class ManymoDeviceConnector extends DeviceConnector {
 
     @Override
     public void executeShellCommand(String command, IShellOutputReceiver receiver,
-                                    int maxTimeToOutputResponse)
+                                    long maxTimeToOutputResponse, TimeUnit maxTimeUnits)
             throws TimeoutException, AdbCommandRejectedException, ShellCommandUnresponsiveException,
             IOException {
         checkNotNull(device, "device is null. connect() probably not called.");
 
-        device.executeShellCommand(command, receiver, maxTimeToOutputResponse);
+        device.executeShellCommand(command, receiver, maxTimeToOutputResponse, maxTimeUnits);
     }
 
     private String parseSerial(List<String> stdout) {
