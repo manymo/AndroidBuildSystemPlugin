@@ -9,8 +9,8 @@ To configure Gradle to run your Android Instrumentation tests in the cloud using
             mavenCentral()
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:0.4'
-            classpath 'com.manymo:gradle:1.0'
+            classpath 'com.android.tools.build:gradle:0.5.4'
+            classpath 'com.manymo:gradle:1.1'
         }
     }
     
