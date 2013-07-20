@@ -1,4 +1,4 @@
-Gradle plugin for running instrumentation tests on Manymo cloud emulators from the Android SDK build system.
+Gradle plugin for running tests on Manymo cloud emulators from the Android SDK build system.
 
 You'll need to install and configure the [manymo command line tool](https://www.manymo.com/pages/documentation/manymo-command-line-tool) before using the plugin.
 
