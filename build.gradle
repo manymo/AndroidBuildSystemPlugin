@@ -25,8 +25,7 @@ dependencies {
 }
 
 group = 'com.manymo'
-archivesBaseName = 'gradle'
-version = '1.1'
+version = '1.2'
 
 // custom tasks for creating source/javadoc jars
 task sourcesJar(type: Jar, dependsOn:classes) {
