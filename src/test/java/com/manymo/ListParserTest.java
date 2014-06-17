@@ -39,7 +39,7 @@ public class ListParserTest extends TestCase {
         DeviceData device1 = map.get("8_WVGA854_armeabi");
         assertNotNull(device1);
         assertEquals(8, device1.getApiLevel());
-        assertEquals("armeabi", device1.getAbi());
+        assertEquals("armeabi", device1.getAbis().get(0));
         assertEquals(240, device1.getDensity());
         assertEquals(854, device1.getHeight());
         assertEquals(480, device1.getWidth());

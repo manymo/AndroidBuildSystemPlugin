@@ -18,6 +18,9 @@ package com.manymo;
 
 import com.android.annotations.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  */
 public class DeviceData {
@@ -29,7 +32,7 @@ public class DeviceData {
     private final int height;
     private final int width;
     @NonNull
-    private final String abi;
+    private final List<String> abis;
 
     public DeviceData(@NonNull String name, int apiLevel,
                       int density, int height, int width,
@@ -39,7 +42,8 @@ public class DeviceData {
         this.density = density;
         this.height = height;
         this.width = width;
-        this.abi = abi;
+        this.abis = new ArrayList<String>();
+        this.abis.add(abi);
     }
 
     @NonNull
@@ -49,11 +53,6 @@ public class DeviceData {
 
     public int getApiLevel() {
         return apiLevel;
-    }
-
-    @NonNull
-    public String getAbi() {
-       return abi;
     }
 
     public int getDensity() {
@@ -66,5 +65,10 @@ public class DeviceData {
 
     public int getWidth() {
         return width;
+    }
+
+    @NonNull
+    public List<String> getAbis() {
+      return abis;
     }
 }

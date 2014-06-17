@@ -19,14 +19,7 @@ package com.manymo;
 import com.android.annotations.NonNull;
 import com.android.builder.testing.api.DeviceConnector;
 import com.android.builder.testing.api.DeviceException;
-import com.android.ddmlib.AdbCommandRejectedException;
-import com.android.ddmlib.AndroidDebugBridge;
-import com.android.ddmlib.IDevice;
-import com.android.ddmlib.IShellOutputReceiver;
-import com.android.ddmlib.InstallException;
-import com.android.ddmlib.ShellCommandUnresponsiveException;
-import com.android.ddmlib.TimeoutException;
-import com.android.ddmlib.DdmPreferences;
+import com.android.ddmlib.*;
 import com.android.utils.ILogger;
 import com.google.common.base.Joiner;
 import java.util.concurrent.TimeUnit;
@@ -151,17 +144,35 @@ public class ManymoDeviceConnector extends DeviceConnector {
         }
     }
 
-    @Override
+  @Override
+  public void pullFile(String remote, String local) throws IOException {
+    try {
+      device.pullFile(remote, local);
+    } catch (AdbCommandRejectedException e) {
+      e.printStackTrace();
+    } catch (TimeoutException e) {
+      e.printStackTrace();
+    } catch (SyncException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
     public int getApiLevel() {
         return deviceData.getApiLevel();
     }
 
-    @Override
-    public String getAbi() {
-        return deviceData.getAbi();
-    }
+  @Override
+  public String getApiCodeName() {
+    return null;
+  }
 
-    @Override
+  @Override
+  public List<String> getAbis() {
+    return deviceData.getAbis();
+  }
+
+  @Override
     public int getDensity() {
         return deviceData.getDensity();
     }

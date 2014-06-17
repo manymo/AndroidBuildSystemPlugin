@@ -19,7 +19,7 @@ dependencies {
     //we will use the Groovy version that ships with Gradle
     compile localGroovy()
 
-    compile 'com.android.tools.build:builder-test-api:0.5.4'
+    compile 'com.android.tools.build:builder-test-api:0.11.1'
 
     testCompile 'junit:junit:3.8.1'
 }
