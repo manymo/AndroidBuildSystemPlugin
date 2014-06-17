@@ -25,6 +25,7 @@ dependencies {
 }
 
 group = 'com.manymo'
+archivesBaseName = 'manymo'
 version = '1.2'
 
 // custom tasks for creating source/javadoc jars
